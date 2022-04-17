@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstScreenOldTestsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/testId_column"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp"
+            android:gravity="center_horizontal"
+            android:background="?attr/colorButtonNormal"
+            android:padding="4dp"
+            android:text="@string/testId_column_name"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/total_question_column"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/total_question_column"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:elevation="2dp"
+            android:gravity="center_horizontal"
+            android:background="?attr/colorButtonNormal"
+            android:padding="4dp"
+            android:text="@string/total_question_column_name"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/testId_column"
+            app:layout_constraintEnd_toStartOf="@+id/correct_questions_column"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/testId_column" />
+
+        <TextView
+            android:id="@+id/correct_questions_column"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:elevation="2dp"
+            android:gravity="center_horizontal"
+            android:padding="4dp"
+            android:background="?attr/colorButtonNormal"
+            android:text="@string/correct_questions_column_name"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/total_question_column"
+            app:layout_constraintEnd_toStartOf="@+id/wrong_answers_column"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/total_question_column" />
+
+        <TextView
+            android:id="@+id/wrong_answers_column"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="?attr/colorButtonNormal"
+            android:layout_marginLeft="8dp"
+            android:elevation="2dp"
+            android:gravity="center_horizontal"
+            android:padding="4dp"
+            android:text="@string/wrong_answers_column_name"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/correct_questions_column"
+            app:layout_constraintEnd_toStartOf="@+id/percentage_column"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/correct_questions_column" />
+
+        <TextView
+            android:id="@+id/percentage_column"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="?attr/colorButtonNormal"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:elevation="2dp"
+            android:gravity="center_horizontal"
+            android:padding="4dp"
+            android:text="@string/percentage_column_name"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/wrong_answers_column"
+            app:layout_constraintEnd_toStartOf="@+id/pass_fail_column"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/wrong_answers_column" />
+
+        <TextView
+            android:id="@+id/pass_fail_column"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorButtonNormal"
+            android:elevation="2dp"
+            android:gravity="center_horizontal"
+            android:padding="4dp"
+            android:text="@string/pass_fail_column_name"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/percentage_column"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/percentage_column" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/old_tests_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testId_column"
+        tools:listitem="@layout/first_screen_old_tests_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</HorizontalScrollView>

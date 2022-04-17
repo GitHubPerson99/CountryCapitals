@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Country And Capitals</string>
+    <string name="company">AA Creations</string>
+    <string name="quiz">Quiz</string>
+    <string name="exam">Exam</string>
+    <string name="practice">Practice</string>
+    <string name="learn">Learn</string>
+    <string name="oceana_quiz">Oceana Quiz</string>
+    <string name="south_america_quiz">South America Quiz</string>
+    <string name="north_america_quiz">North America Quiz</string>
+    <string name="asia_quiz">Asia Quiz</string>
+    <string name="europe_quiz">Europe Quiz</string>
+    <string name="africa_quiz">Africa Quiz</string>
+    <string name="mixed">Mixed</string>
+    <string name="capital">Capital:</string>
+    <string name="country">Country:</string>
+    <string name="continent">Continent:</string>
+    <string name="flag">Flag:</string>
+    <string name="but_the_answer_was">But the correct answer was:</string>
+    <string name="and_the_answer_was">And your answer was correct!</string>
+    <string name="you_said">You Selected:</string>
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="testId_column_name">Test Id</string>
+    <string name="country_question_column_name">Country Name</string>
+    <string name="user_answer_column_name">Your Answer</string>
+    <string name="correct_answer_column_name">Correct Answer</string>
+    <string name="date_column_name">Date</string>
+    <string name="title_activity_old_tests">OldTestsActivity</string>
+
+    <string name="total_question_column_name">Total Questions</string>
+    <string name="correct_questions_column_name">Correct Answers</string>
+    <string name="wrong_answers_column_name">Wrong Answers</string>
+    <string name="percentage_column_name">Percentage</string>
+    <string name="pass_fail_column_name">Pass/Fail</string>
+    <string name="country_column_name">Country</string>
+
+    <string name="about_email">For support, email aa.creations.ireland@gmail.com</string>
+    <string name="about_email_only">aa.creations.ireland@gmail.com</string>
+</resources>

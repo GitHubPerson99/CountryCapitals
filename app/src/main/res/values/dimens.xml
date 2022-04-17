@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="learn_text_size">30sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

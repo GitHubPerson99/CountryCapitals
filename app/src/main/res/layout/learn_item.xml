@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="40dp"
+    android:padding="10dp"
+    app:strokeWidth="0.5dp"
+    app:strokeColor="@color/black"
+    app:cardBackgroundColor="#D5D5D5">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/country"
+            android:textColor="@color/country_dark_blue"
+            android:textSize="@dimen/learn_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.468"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/country_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/learn_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/country"
+            app:layout_constraintStart_toStartOf="@+id/country"
+            app:layout_constraintTop_toBottomOf="@+id/country"
+            tools:text="Country" />
+
+        <TextView
+            android:id="@+id/capital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/capital"
+            android:textColor="@color/capital"
+            android:textSize="@dimen/learn_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/country_name"
+            app:layout_constraintStart_toStartOf="@+id/country_name"
+            app:layout_constraintTop_toBottomOf="@+id/country_name" />
+
+        <TextView
+            android:id="@+id/capital_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/learn_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/capital"
+            app:layout_constraintStart_toStartOf="@+id/capital"
+            app:layout_constraintTop_toBottomOf="@+id/capital"
+            tools:text="Capital" />
+
+        <TextView
+            android:id="@+id/continent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/continent"
+            android:textSize="@dimen/learn_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/capital_name"
+            app:layout_constraintStart_toStartOf="@+id/capital_name"
+            app:layout_constraintTop_toBottomOf="@+id/capital_name" />
+
+        <TextView
+            android:id="@+id/continent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/learn_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/continent"
+            app:layout_constraintStart_toStartOf="@+id/continent"
+            app:layout_constraintTop_toBottomOf="@+id/continent"
+            tools:text="Continent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/flag"
+            android:textColor="@color/black"
+            android:textSize="@dimen/learn_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/continent_name" />
+
+        <ImageView
+            android:id="@+id/learn_flag"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
