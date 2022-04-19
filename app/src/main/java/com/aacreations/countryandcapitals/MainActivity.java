@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +17,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.slider.Slider;
@@ -26,14 +30,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String COPIED_ID = "Copy";
-    public static final String LIST_CURRENT_QUESTIONS = "Current List String Code";
-    public static final String LIST_COMPLETE_QUESTIONS = "Complete List String Code";
     public static final String QUESTIONS = "questions";
     public static final String OPTIONS = "Options";
     public static final String CONTINENT = "CONTINENT";
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private SQLiteCountryCapitalsDAO mDatabaseHelper;
 
-    private List<CountryCapital> items;
     private boolean copied = false;
     private boolean toastShowing = false;
     private Handler mHandler;
@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     final String[] continentArray = new String[]{MainAccess.Options.AFRICA, MainAccess.Options.ASIA, MainAccess.Options.EUROPE,
             MainAccess.Options.NORTH_AMERICA, MainAccess.Options.OCEANA, MainAccess.Options.SOUTH_AMERICA, MainAccess.Options.ALL};
     private NavigationView navigationView;
+
+    private AppBarConfiguration mAppBarConfiguration;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         // set the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initNavigationDrawer(true);
 
@@ -188,8 +190,6 @@ public class MainActivity extends AppCompatActivity {
                     }, 800);
                     return;
                 }
-                // otherwise randomize the list
-                items = MainAccess.RandomGenerator.randomizeList(completeItems, (int) slider.getValue());
                 // go to the QuizActivity class
                 Intent intent = new Intent(MainActivity.this, QuizActivity.class);
                 Bundle bundle = new Bundle();
@@ -223,26 +223,44 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setVisibility(visible ? View.VISIBLE : View.GONE);
 
-        navigationView.getMenu().getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, OldTestsActivity.class);
-                startActivity(intent);
-                finish();
-                return true;
-            }
+        navigationView.getMenu().getItem(1).setOnMenuItemClickListener(item -> {
+            Intent intent = new Intent(MainActivity.this, OldTestsActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
         });
 
-        navigationView.getMenu().getItem(2).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                intent.putExtra(ABOUT_BUNDLE_CLASS, MainActivity.class);
-                startActivity(intent);
-                finish();
-                return true;
-            }
+        navigationView.getMenu().getItem(2).setOnMenuItemClickListener(item -> {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            intent.putExtra(ABOUT_BUNDLE_CLASS, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
         });
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//        if (toggle == null) {
+//            toggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
+//            Drawable myIcon = AppCompatResources.getDrawable(this, R.drawable.ic_baseline_menu_24);
+//            toggle.setHomeAsUpIndicator(myIcon);
+//            drawer.addDrawerListener(toggle);
+//            toggle.syncState();
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        }
+//        if (!visible) {
+//            drawer.removeDrawerListener(toggle);
+//            Drawable myIcon = AppCompatResources.getDrawable(this, R.drawable.ic_baseline_arrow_back_24);
+//            toggle.setHomeAsUpIndicator(myIcon);
+//            toggle.syncState();
+//            toggle = null;
+//        }
+
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.options)
+                .setOpenableLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.options);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     // inflate the menu
@@ -267,19 +285,19 @@ public class MainActivity extends AppCompatActivity {
                             toolbar.setTitle(R.string.company);
                         }
                         mainActivityFragment.setVisibility(View.GONE);
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                         whatIsOpen = "home";
                         initNavigationDrawer(true);
-                        break;
+                        return true;
                     case "slider":
                         optionFragment.setVisibility(View.GONE);
                         mainActivityFragment.setVisibility(View.VISIBLE);
                         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                         whatIsOpen = "list";
                         initNavigationDrawer(true);
-                        break;
+                        return true;
+                    case "home":
                 }
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -302,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
                     toolbar.setTitle(R.string.company);
                 }
                 mainActivityFragment.setVisibility(View.GONE);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 whatIsOpen = "home";
                 break;
             case "slider":
@@ -344,5 +362,12 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.options);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
 
 }

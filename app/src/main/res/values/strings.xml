@@ -37,4 +37,7 @@
 
     <string name="about_email">For support, email aa.creations.ireland@gmail.com</string>
     <string name="about_email_only">aa.creations.ireland@gmail.com</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

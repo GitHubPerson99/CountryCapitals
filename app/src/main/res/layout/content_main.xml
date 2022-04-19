@@ -22,11 +22,12 @@
         android:name="com.aacreations.countryandcapitals.FirstScreenFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_first_screen" />
+        app:navGraph="@navigation/nav_graph" />
 
     <FrameLayout
         android:id="@+id/select"

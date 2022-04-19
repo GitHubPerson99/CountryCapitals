@@ -2,4 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph" />
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstScreenFragment">
+    <fragment
+        android:id="@+id/firstScreenFragment"
+        android:name="com.aacreations.countryandcapitals.FirstScreenFragment"
+        android:label="FirstScreenFragment" >
+        <action
+            android:id="@+id/action_firstScreenFragment_to_mainActivityFragment"
+            app:destination="@id/mainActivityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainActivityFragment"
+        android:name="com.aacreations.countryandcapitals.MainActivityFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+</navigation>
