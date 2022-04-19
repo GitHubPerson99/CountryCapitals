@@ -158,7 +158,11 @@ public class MainActivity extends AppCompatActivity {
                 // 15 countries the go into the if statement
                 if (slider.getValue() > completeItems.size()) {
                     // shows a toast saying: There is only __ countries in __ and __ is to much
-                    Toast toast = Toast.makeText(getApplicationContext(), "There is only " + completeItems.size() + " countries in " + continent + " and " + (int) slider.getValue() + " is too much", Toast.LENGTH_SHORT);
+                    String current = continent;
+                    if (current.equals(MainAccess.Options.OCEANA)) {
+                        current = "Australia";
+                    }
+                    Toast toast = Toast.makeText(getApplicationContext(), "There is only " + completeItems.size() + " countries in " + current + " and " + (int) slider.getValue() + " is too much", Toast.LENGTH_SHORT);
                     // show the toast
                     toast.show();
                     // A TOAST IS SHOWING!
