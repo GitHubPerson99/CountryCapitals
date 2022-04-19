@@ -66,7 +66,7 @@ public class OldTestsActivity extends AppCompatActivity implements FirstScreenOl
 
         navigationView = findViewById(R.id.navigation_view);
         navigationView.getMenu().getItem(0).setOnMenuItemClickListener(item -> {
-            Intent intent = new Intent(OldTestsActivity.this, MainActivity.class);
+            Intent intent = new Intent(OldTestsActivity.this, FirstScreenActivity.class);
             startActivity(intent);
             finish();
             return false;
@@ -96,7 +96,7 @@ public class OldTestsActivity extends AppCompatActivity implements FirstScreenOl
         if (secondScreenView.getVisibility() == View.VISIBLE) {
             initFirstScreen();
         } else {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, FirstScreenActivity.class);
             startActivity(intent);
             finish();
         }
@@ -117,7 +117,7 @@ public class OldTestsActivity extends AppCompatActivity implements FirstScreenOl
                 if (secondScreenView.getVisibility() == View.VISIBLE) {
                     initFirstScreen();
                 } else {
-                    Intent intent = new Intent(this, MainActivity.class);
+                    Intent intent = new Intent(this, FirstScreenActivity.class);
                     startActivity(intent);
                     finish();
                 }

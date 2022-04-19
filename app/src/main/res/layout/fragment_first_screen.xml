@@ -54,11 +54,11 @@
 
             <Button
                 android:id="@+id/learn"
-                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/learn" />
+                android:text="@string/learn"
+                android:visibility="visible" />
         </LinearLayout>
 
 

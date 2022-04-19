@@ -56,7 +56,7 @@ public class LearnActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case android.R.id.home:
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, FirstScreenActivity.class);
                 startActivity(intent);
                 finish();
                 return true;
@@ -65,4 +65,10 @@ public class LearnActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FirstScreenActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

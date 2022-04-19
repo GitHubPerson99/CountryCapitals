@@ -26,6 +26,7 @@ public class AboutActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         aClass = (Class) bundle.getSerializable(MainActivity.ABOUT_BUNDLE_CLASS);
+        initNavigationDrawer();
     }
 
     @Override
@@ -35,6 +36,7 @@ public class AboutActivity extends AppCompatActivity {
             case android.R.id.home:
                 Intent intent = new Intent(this, aClass);
                 startActivity(intent);
+                finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -44,7 +46,7 @@ public class AboutActivity extends AppCompatActivity {
         navigationView.getMenu().getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(AboutActivity.this, MainActivity.class);
+                Intent intent = new Intent(AboutActivity.this, FirstScreenActivity.class);
                 startActivity(intent);
                 finish();
                 return true;
@@ -62,4 +64,10 @@ public class AboutActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, aClass);
+        startActivity(intent);
+        finish();
+    }
 }

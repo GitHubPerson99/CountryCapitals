@@ -2,7 +2,6 @@ package com.aacreations.countryandcapitals;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -17,13 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.slider.Slider;
 
 import java.io.File;
@@ -48,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private Handler mHandler;
     protected String whatIsOpen;
 
-    View optionFragment;
     View mainActivityFragment;
     View selectFragment;
     GridView continents;
@@ -57,17 +49,17 @@ public class MainActivity extends AppCompatActivity {
     String options;
     final String[] continentArray = new String[]{MainAccess.Options.AFRICA, MainAccess.Options.ASIA, MainAccess.Options.EUROPE,
             MainAccess.Options.NORTH_AMERICA, MainAccess.Options.OCEANA, MainAccess.Options.SOUTH_AMERICA, MainAccess.Options.ALL};
-    private NavigationView navigationView;
-
-    private AppBarConfiguration mAppBarConfiguration;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        whatIsOpen = "home";
+        whatIsOpen = "list";
         Log.d(TAG, "onCreate: started");
+
+        Bundle bundle = getIntent().getExtras();
+        options = bundle.getString(OPTIONS);
 
         // set the handler to access the toast
         mHandler = new Handler();
@@ -82,11 +74,9 @@ public class MainActivity extends AppCompatActivity {
         // set the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle(options);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        initNavigationDrawer(true);
-
-        initOptionsFragment();
         initSlider();
         initContinentsFragment();
         initSliderFragment();
@@ -107,20 +97,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initOptionsFragment() {
-        // set the base screens
-        // first screen that shows: quiz, practise and learn
-        optionFragment = findViewById(R.id.options);
-        // make it visible as its the first screen
-        optionFragment.setVisibility(View.VISIBLE);
-
-    }
-
     private void initContinentsFragment() {
         // second screen that shows the continents
         mainActivityFragment = findViewById(R.id.fragment);
         // make it invisible
-        mainActivityFragment.setVisibility(View.GONE);
+        mainActivityFragment.setVisibility(View.VISIBLE);
         // continents in this screen
         continents = findViewById(R.id.continents);
 
@@ -144,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             } else {
                 // ...otherwise make the slider visible
-                optionFragment.setVisibility(View.GONE);
                 mainActivityFragment.setVisibility(View.GONE);
                 selectFragment.setVisibility(View.VISIBLE);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -219,50 +199,6 @@ public class MainActivity extends AppCompatActivity {
         slider.getValue();
     }
 
-    public void initNavigationDrawer(boolean visible) {
-        navigationView = findViewById(R.id.navigation_view);
-        navigationView.setVisibility(visible ? View.VISIBLE : View.GONE);
-
-        navigationView.getMenu().getItem(1).setOnMenuItemClickListener(item -> {
-            Intent intent = new Intent(MainActivity.this, OldTestsActivity.class);
-            startActivity(intent);
-            finish();
-            return true;
-        });
-
-        navigationView.getMenu().getItem(2).setOnMenuItemClickListener(item -> {
-            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-            intent.putExtra(ABOUT_BUNDLE_CLASS, MainActivity.class);
-            startActivity(intent);
-            finish();
-            return true;
-        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        if (toggle == null) {
-//            toggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
-//            Drawable myIcon = AppCompatResources.getDrawable(this, R.drawable.ic_baseline_menu_24);
-//            toggle.setHomeAsUpIndicator(myIcon);
-//            drawer.addDrawerListener(toggle);
-//            toggle.syncState();
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        }
-//        if (!visible) {
-//            drawer.removeDrawerListener(toggle);
-//            Drawable myIcon = AppCompatResources.getDrawable(this, R.drawable.ic_baseline_arrow_back_24);
-//            toggle.setHomeAsUpIndicator(myIcon);
-//            toggle.syncState();
-//            toggle = null;
-//        }
-
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.options)
-                .setOpenableLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.options);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-    }
-
     // inflate the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -279,22 +215,13 @@ public class MainActivity extends AppCompatActivity {
                 selectFragment.setVisibility(View.GONE);
                 switch (whatIsOpen) {
                     case "list":
-                        optionFragment.setVisibility(View.VISIBLE);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            Toolbar toolbar = findViewById(R.id.toolbar);
-                            toolbar.setTitle(R.string.company);
-                        }
-                        mainActivityFragment.setVisibility(View.GONE);
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                        whatIsOpen = "home";
-                        initNavigationDrawer(true);
+                        startActivity(new Intent(this, FirstScreenActivity.class));
+                        finish();
                         return true;
                     case "slider":
-                        optionFragment.setVisibility(View.GONE);
                         mainActivityFragment.setVisibility(View.VISIBLE);
                         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                         whatIsOpen = "list";
-                        initNavigationDrawer(true);
                         return true;
                     case "home":
                 }
@@ -314,17 +241,10 @@ public class MainActivity extends AppCompatActivity {
         selectFragment.setVisibility(View.GONE);
         switch (whatIsOpen) {
             case "list":
-                optionFragment.setVisibility(View.VISIBLE);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Toolbar toolbar = findViewById(R.id.toolbar);
-                    toolbar.setTitle(R.string.company);
-                }
-                mainActivityFragment.setVisibility(View.GONE);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                whatIsOpen = "home";
+                startActivity(new Intent(this, FirstScreenActivity.class));
+                finish();
                 break;
             case "slider":
-                optionFragment.setVisibility(View.GONE);
                 mainActivityFragment.setVisibility(View.VISIBLE);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 whatIsOpen = "list";
@@ -362,12 +282,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.options);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
-
 
 }

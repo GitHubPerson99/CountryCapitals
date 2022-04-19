@@ -186,7 +186,7 @@ public class QuizActivity extends AppCompatActivity {
                     case "answers":
                     case "home":
                         Log.d(TAG, "onOptionsItemSelected: called");
-                        Intent intent = new Intent(this, MainActivity.class);
+                        Intent intent = new Intent(this, FirstScreenActivity.class);
                         startActivity(intent);
                         finish();
                         break;
@@ -207,7 +207,7 @@ public class QuizActivity extends AppCompatActivity {
                 break;
             case "answers":
             case "home":
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, FirstScreenActivity.class);
                 startActivity(intent);
                 finish();
                 break;

@@ -1,7 +1,6 @@
 package com.aacreations.countryandcapitals;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.aacreations.countryandcapitals.databinding.FragmentFirstScreenBinding;
@@ -30,7 +28,7 @@ public class FirstScreenFragment extends Fragment {
         
         View view = binding.getRoot();
 
-        MainActivity activity = (MainActivity) requireActivity();
+        FirstScreenActivity activity = (FirstScreenActivity) requireActivity();
 
         // Buttons
         View.OnClickListener optionListener = new View.OnClickListener() {
@@ -39,13 +37,13 @@ public class FirstScreenFragment extends Fragment {
             public void onClick(@NonNull View v) {
                 switch (v.getId()) {
                     case R.id.exam:
-                        examPracticeLearn(activity, MainAccess.Options.EXAM);
+                        activity.examPracticeLearn(MainAccess.Options.EXAM);
                         break;
                     case R.id.practice:
-                        examPracticeLearn(activity, MainAccess.Options.PRACTICE);
+                        activity.examPracticeLearn(MainAccess.Options.PRACTICE);
                         break;
                     case R.id.learn:
-                        examPracticeLearn(activity, MainAccess.Options.LEARN);
+                        activity.examPracticeLearn(MainAccess.Options.LEARN);
                         break;
                 }
             }
@@ -57,20 +55,6 @@ public class FirstScreenFragment extends Fragment {
 
         return view;
 
-    }
-
-    private void examPracticeLearn(@NonNull MainActivity activity, String option) {
-        activity.options = option;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Toolbar toolbar = activity.findViewById(R.id.toolbar);
-            toolbar.setTitle(option);
-        }
-        activity.optionFragment.setVisibility(View.GONE);
-        activity.mainActivityFragment.setVisibility(View.VISIBLE);
-        activity.selectFragment.setVisibility(View.GONE);
-        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        activity.whatIsOpen = "list";
-        activity.initNavigationDrawer(false);
     }
 
     @Override

@@ -19,6 +19,7 @@
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/drawable/side_nav_bar.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/drawable/widgets.xml" value="0.21875" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/activity_about.xml" value="0.3625" />
+        <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/activity_first_screen.xml" value="0.3625" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/activity_learn.xml" value="0.2875905797101449" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/activity_main.xml" value="0.3569230769230769" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/activity_main_test.xml" value="0.20260416666666667" />
@@ -27,7 +28,7 @@
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/answers_item.xml" value="0.2875905797101449" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/content_about.xml" value="0.3625" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/content_learn.xml" value="0.2875905797101449" />
-        <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/content_main.xml" value="0.2703804347826087" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/content_quiz.xml" value="0.25" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/continent_item.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/curve_style.xml" value="0.2875905797101449" />
@@ -36,7 +37,7 @@
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/drawer_toolbar.xml" value="0.3625" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/first_screen_old_tests_item.xml" value="0.6270270270270271" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/fragment_first.xml" value="0.3625" />
-        <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/fragment_first_screen.xml" value="0.3380208333333333" />
+        <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/fragment_first_screen.xml" value="0.3625" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/fragment_first_screen_old_tests.xml" value="0.4836692147324531" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/fragment_main.xml" value="0.3625" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/fragment_old_tests.xml" value="0.3625" />
@@ -44,7 +45,7 @@
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/item_listview.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/learn_item.xml" value="0.25" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/old_tests_item.xml" value="0.6270270270270271" />
-        <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/old_tests_view.xml" value="0.5785536159600998" />
+        <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/old_tests_view.xml" value="0.33" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/other_toolbar.xml" value="0.3625" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/row_item.xml" value="0.25" />
         <entry key="..\:/Users/aarav/AndroidStudioProjects/CountryAndCapitals/app/src/main/res/layout/second_screen_old_tests_item.xml" value="0.3625" />
