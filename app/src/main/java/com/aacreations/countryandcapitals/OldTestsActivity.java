@@ -188,7 +188,7 @@ public class OldTestsActivity extends AppCompatActivity implements FirstScreenOl
         TextView timeTaken = findViewById(R.id.time_taken);
         timeTaken.setVisibility(View.VISIBLE);
 
-//        passFail.setText(current.getPassFail());
+        passFail.setText(current.getPassFail());
         totalQuestions.setText(MainAccess.toString("Total Questions: ", current.getTotalQuestions()));
         correctAnswer.setText(MainAccess.toString("Questions Correct: ", current.getQuestionsCorrect()));
         wrongAnswers.setText(MainAccess.toString("Questions wrong: ", current.getQuestionsWrong()));

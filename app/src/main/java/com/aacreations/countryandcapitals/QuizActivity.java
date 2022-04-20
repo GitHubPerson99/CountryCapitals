@@ -322,6 +322,9 @@ public class QuizActivity extends AppCompatActivity {
             mDatabaseHelper.create(countryCapital, Table.TABLE_OLD_TESTS);
         }
 
+        TextView passFail = findViewById(R.id.pass_fail);
+        passFail.setText(currentQuestions.get(0).getPassFail());
+
     }
 
     private void runTimer() {

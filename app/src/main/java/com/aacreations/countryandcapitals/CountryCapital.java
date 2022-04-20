@@ -2,12 +2,15 @@ package com.aacreations.countryandcapitals;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.Contract;
 
 public class CountryCapital implements Parcelable {
+
+    private static final String TAG = "CountryCapital";
 
     private int testId = 0;
     private String countryName;
@@ -25,6 +28,7 @@ public class CountryCapital implements Parcelable {
     private long date = 0;
     private String time = "00:00:00";
     private String timeTaken = "00:00";
+    private String passFail = "Fail";
 
     public CountryCapital(String countryName, String capitalName, String continent, String colour, String flagID) {
         this.countryName = countryName;
@@ -34,7 +38,7 @@ public class CountryCapital implements Parcelable {
         this.flagId = flagID;
     }
 
-    public CountryCapital(int testId, int questionsCorrect, int questionsWrong, int totalQuestions, String percentage, long date, String time, String timeTaken) {
+    public CountryCapital(int testId, int questionsCorrect, int questionsWrong, int totalQuestions, @NonNull String percentage, long date, String time, String timeTaken) {
         this.testId = testId;
         this.questionsCorrect = questionsCorrect;
         this.questionsWrong = questionsWrong;
@@ -43,9 +47,12 @@ public class CountryCapital implements Parcelable {
         this.date = date;
         this.time = time;
         this.timeTaken = timeTaken;
+
+        int percentageInNumber = Integer.parseInt(percentage.substring(0, percentage.length() - 3));
+        passFail = percentageInNumber >= 70 ? "Pass" : "Fail";
     }
 
-    public CountryCapital(int testId, String countryName, String userAnswer, String correctAnswer, int questionsCorrect, int questionsWrong, int totalQuestions, String percentage, long date, String time, String timeTaken) {
+    public CountryCapital(int testId, String countryName, String userAnswer, String correctAnswer, int questionsCorrect, int questionsWrong, int totalQuestions, @NonNull String percentage, long date, String time, String timeTaken) {
         this.testId = testId;
         this.countryName = countryName;
         answerSent = userAnswer;
@@ -57,9 +64,12 @@ public class CountryCapital implements Parcelable {
         this.date = date;
         this.time = time;
         this.timeTaken = timeTaken;
+
+        int percentageInNumber = Integer.parseInt(percentage.substring(0, percentage.length() - 3));
+        passFail = percentageInNumber >= 70 ? "Pass" : "Fail";
     }
 
-    protected CountryCapital(Parcel in) {
+    protected CountryCapital(@NonNull Parcel in) {
         testId = in.readInt();
         countryName = in.readString();
         capitalName = in.readString();
@@ -78,7 +88,7 @@ public class CountryCapital implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(testId);
         dest.writeString(countryName);
         dest.writeString(capitalName);
@@ -94,6 +104,7 @@ public class CountryCapital implements Parcelable {
         dest.writeLong(date);
         dest.writeString(time);
         dest.writeString(timeTaken);
+        dest.writeString(passFail);
     }
 
     @Override
@@ -102,11 +113,15 @@ public class CountryCapital implements Parcelable {
     }
 
     public static final Creator<CountryCapital> CREATOR = new Creator<CountryCapital>() {
+        @NonNull
+        @Contract("_ -> new")
         @Override
         public CountryCapital createFromParcel(Parcel in) {
             return new CountryCapital(in);
         }
 
+        @NonNull
+        @Contract(value = "_ -> new", pure = true)
         @Override
         public CountryCapital[] newArray(int size) {
             return new CountryCapital[size];
@@ -130,6 +145,7 @@ public class CountryCapital implements Parcelable {
                 ", date=" + date +
                 ", time='" + time + '\'' +
                 ", timeTaken='" + timeTaken + '\'' +
+                ", passFail='" + passFail + '\'' +
                 '}';
     }
 
@@ -197,6 +213,9 @@ public class CountryCapital implements Parcelable {
         return timeTaken;
     }
 
+    public String getPassFail() {
+        return passFail;
+    }
 
     // ==========================================================================================
     // SETTERS
@@ -243,4 +262,7 @@ public class CountryCapital implements Parcelable {
         this.timeTaken = timeTaken;
     }
 
+    public void setPassFail(String passFail) {
+        this.passFail = passFail;
+    }
 }

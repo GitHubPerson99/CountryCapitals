@@ -47,8 +47,8 @@ public class FirstScreenOldTestsRVAdapter extends RecyclerView.Adapter<FirstScre
         Log.d(TAG, "onBindViewHolder: questionsWrong = " + questionsWrong);
         String percentage = currentCountryCapital.getPercentage();
         Log.d(TAG, "onBindViewHolder: percentage = " + percentage);
-//        String passFail = currentCountryCapital.getPassFail();
-        String passFail = "fail";
+        String passFail = currentCountryCapital.getPassFail();
+        Log.d(TAG, "onBindViewHolder: passFail = " + passFail);
 
         holder.testId.setText(MainAccess.toString(testId));
         holder.totalQuestions.setText(MainAccess.toString(totalQuestions));
