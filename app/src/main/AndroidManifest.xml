@@ -10,16 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CountryAndCapitals">
         <activity
-            android:name=".FirstScreenActivity"
+            android:name=".SplashScreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.CountryAndCapitals.NoActionBar">
+            android:label="@string/title_activity_splash_screen"
+            android:theme="@style/Theme.CountryAndCapitals.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".FirstScreenActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.CountryAndCapitals.NoActionBar"/>
         <activity
             android:name=".AboutActivity"
             android:exported="true"
@@ -36,8 +42,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.CountryAndCapitals.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.CountryAndCapitals.NoActionBar"/>
         <activity
             android:name=".QuizActivity"
             android:exported="false"
