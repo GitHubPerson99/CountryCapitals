@@ -70,7 +70,6 @@ public class SQLiteCountryCapitalsDAO extends SQLiteOpenHelper implements Countr
         if (newVersion > oldVersion) {
             Log.v("Database Upgrade", "Database version higher than old.");
         }
-
     }
 
 
