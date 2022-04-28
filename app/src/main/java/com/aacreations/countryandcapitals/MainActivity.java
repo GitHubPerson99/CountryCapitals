@@ -20,9 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.slider.Slider;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,13 +61,6 @@ public class MainActivity extends AppCompatActivity {
         // set the handler to access the toast
         mHandler = new Handler();
 
-        // check if the instance was copied previously
-//        if (savedInstanceState != null) {
-//            copied = savedInstanceState.getBoolean(COPIED_ID);
-//        }
-        // because I'm putting update databases, copied should be false
-        copied = false;
-
         // set the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,16 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         // open the database and copy the database
         mDatabaseHelper = SQLiteCountryCapitalsDAO.getInstance(this);
-        File database = getApplicationContext().getDatabasePath(SQLiteCountryCapitalsDAO.DB_NAME);
-        if (!database.exists()) {
-            mDatabaseHelper.getWritableDatabase();
-            // Copy db
-            if (copyDatabase()) {
-                Log.d(TAG, "onCreate: copy successful");
-            } else {
-                Log.d(TAG, "onCreate: copy unsuccessful");
-            }
-        }
 
     }
 
@@ -256,35 +236,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 super.onBackPressed();
         }
-    }
-
-    /**
-     * copies the database into internal storage
-     * @return whether the database is copied or not
-     */
-    private boolean copyDatabase() {
-        if (!copied) {
-            try {
-
-                InputStream inputStream = getAssets().open(SQLiteCountryCapitalsDAO.DB_NAME);
-                String outFileName = SQLiteCountryCapitalsDAO.DB_LOCATION + SQLiteCountryCapitalsDAO.DB_NAME;
-                OutputStream outputStream = new FileOutputStream(outFileName);
-                byte[] buff = new byte[1024];
-                int length;
-                while ((length = inputStream.read(buff)) > 0) {
-                    outputStream.write(buff, 0, length);
-                }
-                outputStream.flush();
-                outputStream.close();
-                Log.d("MainActivity", "DB copied");
-                copied = true;
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e(TAG, "copyDatabase: FAILED TO COPY");
-            }
-
-        }
-        return true;
     }
 
 }

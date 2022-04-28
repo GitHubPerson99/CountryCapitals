@@ -10,14 +10,22 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 public class FirstScreenActivity extends AppCompatActivity {
+    private static final String TAG = "FirstScreenActivity";
 
     NavigationView navigationView;
     AppBarConfiguration mAppBarConfiguration;
+    private boolean copied = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +33,27 @@ public class FirstScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_first_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+        // check if the instance was copied previously
+//        if (savedInstanceState != null) {
+//            copied = savedInstanceState.getBoolean(COPIED_ID);
+//        }
+        // because I'm putting update databases, copied should be false
+        copied = false;
+
+        File database = getApplicationContext().getDatabasePath(SQLiteCountryCapitalsDAO.DB_NAME);
+        if (!database.exists()) {
+            SQLiteCountryCapitalsDAO databaseHelper = SQLiteCountryCapitalsDAO.getInstance(this);
+            databaseHelper.getWritableDatabase();
+            // Copy db
+            if (copyDatabase()) {
+                Log.d(TAG, "onCreate: copy successful");
+            } else {
+                Log.d(TAG, "onCreate: copy unsuccessful");
+            }
+        }
 
         initNavigationDrawer(true);
 
@@ -73,6 +102,37 @@ public class FirstScreenActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.options);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+
+
+    /**
+     * copies the database into internal storage
+     * @return whether the database is copied or not
+     */
+    private boolean copyDatabase() {
+        if (!copied) {
+            try {
+
+                InputStream inputStream = getAssets().open(SQLiteCountryCapitalsDAO.DB_NAME);
+                String outFileName = SQLiteCountryCapitalsDAO.DB_LOCATION + SQLiteCountryCapitalsDAO.DB_NAME;
+                OutputStream outputStream = new FileOutputStream(outFileName);
+                byte[] buff = new byte[1024];
+                int length;
+                while ((length = inputStream.read(buff)) > 0) {
+                    outputStream.write(buff, 0, length);
+                }
+                outputStream.flush();
+                outputStream.close();
+                Log.d("MainActivity", "DB copied");
+                copied = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e(TAG, "copyDatabase: FAILED TO COPY");
+            }
+
+        }
+        return true;
     }
 
 }

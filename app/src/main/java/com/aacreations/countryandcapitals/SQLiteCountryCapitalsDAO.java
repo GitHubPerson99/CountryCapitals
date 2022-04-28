@@ -30,7 +30,7 @@ public class SQLiteCountryCapitalsDAO extends SQLiteOpenHelper implements Countr
 
     // implement SQLiteCountryCapitalsDAO as a Singleton
     @SuppressLint("StaticFieldLeak")
-    private static SQLiteCountryCapitalsDAO instance = null;
+    private volatile static SQLiteCountryCapitalsDAO instance = null;
     protected int testId = 0;
     private final String TEST_ID = "Test Id 109683";
 
@@ -51,8 +51,10 @@ public class SQLiteCountryCapitalsDAO extends SQLiteOpenHelper implements Countr
      */
     static SQLiteCountryCapitalsDAO getInstance(Context context) {
         if (instance == null) {
-            Log.d(TAG, "getInstance: creating new instance");
-            instance = new SQLiteCountryCapitalsDAO(context);
+            synchronized (SQLiteCountryCapitalsDAO.class) {
+                Log.d(TAG, "getInstance: creating new instance");
+                instance = new SQLiteCountryCapitalsDAO(context);
+            }
         }
         return instance;
     }
