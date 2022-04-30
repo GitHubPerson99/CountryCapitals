@@ -280,7 +280,8 @@ public class QuizActivity extends AppCompatActivity {
         answers.setVisibility(View.VISIBLE);
         viewAnswers.setVisibility(View.GONE);
         TextView score = findViewById(R.id.score);
-        score.setText(String.format(Locale.getDefault(),"%d/%d(%d%%)", currentScore, currentQuestions.size(), (int) (((double) currentScore / (double) currentQuestions.size()) * 100)));
+        int percentage = (int) (((double) currentScore / (double) currentQuestions.size()) * 100);
+        score.setText(String.format(Locale.getDefault(),"%d/%d(%d%%)", currentScore, currentQuestions.size(), percentage));
 
         AnimatedPieViewConfig config = new AnimatedPieViewConfig();
         config.addData(new SimplePieInfo(currentScore, Color.parseColor("#AA00FF00")));
@@ -309,6 +310,7 @@ public class QuizActivity extends AppCompatActivity {
 
         mDatabaseHelper.newTest();
         CountryCapital countryCapital;
+        String passFailString = percentage >= 70 ? "Pass" : "Fail";
         for (int i = 0; i < currentQuestions.size(); i++) {
             countryCapital = currentQuestions.get(i);
             countryCapital.setTestId(mDatabaseHelper.testId);
@@ -319,11 +321,12 @@ public class QuizActivity extends AppCompatActivity {
             countryCapital.setTimeTaken(String.format(Locale.getDefault(), "%02d:%02d", minutes, secs));
             countryCapital.setQuestionsWrong(currentQuestions.size()-currentScore);
             countryCapital.setQuestionsCorrect(currentScore);
+            countryCapital.setPassFail(passFailString);
             mDatabaseHelper.create(countryCapital, Table.TABLE_OLD_TESTS);
         }
 
         TextView passFail = findViewById(R.id.pass_fail);
-        passFail.setText(currentQuestions.get(0).getPassFail());
+        passFail.setText(passFailString);
 
     }
 
