@@ -10,10 +10,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.telephony.CellSignalStrength;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +25,7 @@ public class SQLiteCountryCapitalsDAO extends SQLiteOpenHelper implements Countr
     public static final String DB_NAME = "CountriesAndCapitals.db";
     @SuppressLint("SdCardPath")
     public static final String DB_LOCATION = "/data/data/com.aacreations.countryandcapitals/databases/";
-    private Context mContext;
+    private final Context mContext;
     private SQLiteDatabase mDatabase;
 
     // implement SQLiteCountryCapitalsDAO as a Singleton
@@ -46,7 +46,7 @@ public class SQLiteCountryCapitalsDAO extends SQLiteOpenHelper implements Countr
     /**
      * Get an instance of the app's Singleton database helper object
      *
-     * @param context
+     * @param context the context for the
      * @return a SQLite database helper object
      */
     static SQLiteCountryCapitalsDAO getInstance(Context context) {
@@ -61,8 +61,7 @@ public class SQLiteCountryCapitalsDAO extends SQLiteOpenHelper implements Countr
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO Auto-generated method stub
-
+        // not necessary to put anything here, FirstScreenActivity deals with that
     }
 
     @Override
@@ -271,10 +270,11 @@ public class SQLiteCountryCapitalsDAO extends SQLiteOpenHelper implements Countr
      * @param assetManager an asset manager
      * @return the image converted into bitmap or returns null image does not exist
      */
-    public static Bitmap getImageAsBitmap(String name, AssetManager assetManager) {
+    @Nullable
+    public static Bitmap getImageAsBitmap(String name, String folder, @NonNull AssetManager assetManager) {
         Log.d(TAG, "getImage: called");
         try {
-            InputStream inputStream = assetManager.open("flags/" + name + ".png");
+            InputStream inputStream = assetManager.open(folder + "/" + name + ".png");
             Log.d(TAG, "getImage: image opened");
             int size = inputStream.available();
             Log.d(TAG, "getImage: image is available");
@@ -285,6 +285,7 @@ public class SQLiteCountryCapitalsDAO extends SQLiteOpenHelper implements Countr
         } catch (IOException ioException) {
             Log.e(TAG, "getImage: EXCEPTION, EXCEPTION");
             Log.d(TAG, "getImageAsBitmap: NAME = " + name);
+            Log.d(TAG, "getImageAsBitmap: location = " + folder + "/" + name + ".png");
             return null;
         }
     }

@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
     Slider slider;
     String continent = MainAccess.Options.ALL;
     String options;
-    final String[] continentArray = new String[]{MainAccess.Options.AFRICA, MainAccess.Options.ASIA, MainAccess.Options.EUROPE,
-            MainAccess.Options.NORTH_AMERICA, MainAccess.Options.OCEANA, MainAccess.Options.SOUTH_AMERICA, MainAccess.Options.ALL};
+    final String[] continentArray = new String[]{MainAccess.Options.AFRICA, MainAccess.Options.ASIA, MainAccess.Options.OCEANA, MainAccess.Options.EUROPE,
+            MainAccess.Options.NORTH_AMERICA, MainAccess.Options.SOUTH_AMERICA, MainAccess.Options.ALL};
+    final String[] continentPicturesArray = new String[]{"africa", "asia", "australia", "europe", "north_america", "south_america", "south_america"};
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         continents = findViewById(R.id.continents);
 
         // set the gridView
-        GridViewAdapter adapter = new GridViewAdapter(this, continentArray);
+        GridViewAdapter adapter = new GridViewAdapter(this, continentArray, continentPicturesArray);
         continents.setAdapter(adapter);
 
         // when an item is clicked...

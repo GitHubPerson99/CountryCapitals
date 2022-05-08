@@ -268,7 +268,7 @@ public class QuizActivity extends AppCompatActivity {
         question.setText(String.format("What is the capital of %s?", currentQuestions.get(currentQuestion).getCountryName()));
 
         flag.setVisibility(View.GONE);
-        flag.setImageBitmap(SQLiteCountryCapitalsDAO.getImageAsBitmap(currentQuestions.get(currentQuestion).getFlagId(), getAssets()));
+        flag.setImageBitmap(SQLiteCountryCapitalsDAO.getImageAsBitmap(currentQuestions.get(currentQuestion).getFlagId(), "flags", getAssets()));
     }
 
     /**

@@ -54,7 +54,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         country.setText(current.getCountryName());
         capital.setText(current.getCapitalName());
         continent.setText(current.getContinent());
-        imageView.setImageBitmap(SQLiteCountryCapitalsDAO.getImageAsBitmap(current.getFlagId(), context.getAssets()));
+        imageView.setImageBitmap(SQLiteCountryCapitalsDAO.getImageAsBitmap(current.getFlagId(), "flags", context.getAssets()));
 
         view.setBackgroundColor(Color.parseColor(current.getColour()));
 
